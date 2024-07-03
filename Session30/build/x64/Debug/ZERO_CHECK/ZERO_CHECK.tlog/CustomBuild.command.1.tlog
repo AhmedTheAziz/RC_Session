@@ -1,0 +1,10 @@
+^D:\ROBOTICS CORNER\SESSIONS\SESSION CODES\SESSION30\BUILD\CMAKEFILES\11D2927F9EB57DCEB07E4340519194C3\GENERATE.STAMP.RULE
+setlocal
+D:\Programs\Cmake\cmake-3.30.0-rc2-windows-x86_64\bin\cmake.exe "-SD:/Robotics Corner/Sessions/Session codes/Session30" "-BD:/Robotics Corner/Sessions/Session codes/Session30/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "D:/Robotics Corner/Sessions/Session codes/Session30/build/CMakeHello.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

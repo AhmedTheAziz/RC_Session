@@ -1,0 +1,2 @@
+C:/msys64/ucrt64/bin/ar.exe qc libNumbersLibs.a CMakeFiles/NumbersLibs.dir/wifi.cpp.obj CMakeFiles/NumbersLibs.dir/Numbers.cpp.obj
+C:/msys64/ucrt64/bin/ranlib.exe libNumbersLibs.a
