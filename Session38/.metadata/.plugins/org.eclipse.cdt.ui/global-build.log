@@ -1,0 +1,7 @@
+13:15:00 **** Incremental Build of configuration Debug for project Session39 ****
+make -j4 all 
+arm-none-eabi-size  Session39.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1532	      4	   1620	   3156	    c54	Session39.elf
+Finished building: default.size.stdout
+ 

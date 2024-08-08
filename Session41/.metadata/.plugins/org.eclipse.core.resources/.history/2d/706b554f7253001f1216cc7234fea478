@@ -1,0 +1,48 @@
+/*
+ * uart.h
+ *
+ *  Created on: Aug 5, 2024
+ *      Author: AHMED ABDELAZIZ
+ */
+
+#include "main.h"
+
+#ifndef INC_UART_H_
+#define INC_UART_H_
+
+#define FOSC 8000000
+#define BAUD 9600
+enum UART_no
+{
+	UART1 = 0x40013800,
+	UART2 = 0x40004400,
+	UART3 = 0x40004800,
+};
+class UART
+{
+public:
+	UART()
+	{}
+	void INIT()
+	{}
+	void Receive()
+	{}
+	void Send (char data)
+	{}
+	void Send(const std::string& data)
+	{}
+
+private:
+	//REGISTERS..
+	uint32_t SR;
+	uint32_t DR;
+	uint32_t BRR;
+	uint32_t CR1;
+	uint32_t CR2;
+	uint32_t CR3;
+	uint32_t GTPR;
+};
+
+
+
+#endif /* INC_UART_H_ */

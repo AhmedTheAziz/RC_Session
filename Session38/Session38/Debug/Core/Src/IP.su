@@ -1,0 +1,4 @@
+../Core/Src/IP.cpp:13:2:IP::IP(GPIO_TypeDef*, uint8_t)	24	static
+../Core/Src/IP.cpp:35:11:uint32_t IP::GetStatus()	16	static
+../Core/Src/IP.cpp:40:7:bool IP::Getstatus()	16	static
+../Core/Src/IP.cpp:46:2:IP::~IP()	16	static

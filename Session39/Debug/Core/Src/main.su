@@ -1,0 +1,5 @@
+../Core/Src/main.cpp:28:5:int main()	24	static
+../Core/Inc/motor.h:14:8:Motor_Config::~Motor_Config()	16	static
+../Core/Src/main.cpp:48:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Core/Src/main.cpp:48:1:cpp)	8	static
+../Core/Src/main.cpp:48:1:cpp)	8	static

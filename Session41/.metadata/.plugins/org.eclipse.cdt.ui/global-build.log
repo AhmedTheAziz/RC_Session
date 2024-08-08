@@ -1,0 +1,14 @@
+05:24:39 **** Incremental Build of configuration Debug for project Session41 ****
+make -j4 all 
+arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m3 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-g++ -o "Session41.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\Robotics Corner\Sessions\Session codes\Session41\Session41\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Session41.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: Session41.elf
+ 
+arm-none-eabi-size  Session41.elf 
+arm-none-eabi-objdump -h -S Session41.elf  > "Session41.list"
+   text	   data	    bss	    dec	    hex	filename
+   2876	     84	   1932	   4892	   131c	Session41.elf
+Finished building: default.size.stdout
+ 
+Finished building: Session41.list
+ 

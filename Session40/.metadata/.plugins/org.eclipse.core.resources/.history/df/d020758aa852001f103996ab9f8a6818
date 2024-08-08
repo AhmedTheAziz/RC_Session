@@ -1,0 +1,68 @@
+#include "main.h"
+
+//Defines
+#define FOSC 8000000 //Freq. of OSC. is 8Mhz
+#define BAUD 9600    // Baud rate 9600 for BT connection.
+
+//Functions.
+void LED_ON()
+{
+	GPIOC->ODR |=(1<<13);
+}
+void LED_OFF()
+{
+	GPIOC->ODR &=~(1<<13);
+}
+
+void LED_INIT()
+{
+	RCC->ABP2ENR |=(1<<4);
+	GPIOC->CRH(3<<20);
+}
+
+void USART_sendChar (char data)
+{
+	USART1->DR=data &0xff; // f=15 (1111) (2^3,2^2,2^1,2^0) (8,4,2,1) total=15.
+	while(!(USART1->SR &(1<<7)));
+}
+void USART_sendString (char *data)
+{
+	int i=0;
+	while (data[i]!= '\0')
+	{
+		USART_sendChar(data[i]);
+		i++;
+	}
+}
+
+
+int main(void)
+{
+	//Enable        AFIO     GPIOA    USART1
+	RCC->APB2ENR = (1<<0) | (1<<2) | (1<<14);
+	// As USART1 is using Port A pins so we must confg. GPIOA as well.
+	LED_INIT();
+	//Port A9 to be O/P as Alternate Function  for USART Transmission.
+	GPIOA->CRH =(0x0B<<4); // B=11 (1011) (8+2+1)
+	//Port A10 to be I\P Floating for USART Receiving.
+	GPIOA->CRH |=(0x4<<8); // 4= (0100)
+	//Test if wanted to activate both PA9 & PA10 at once
+	//GPIOA->CRH=(0x4B<<4);
+	//  0000   0000   0000
+	//   p10    p9     p8
+	// (0100) (1011) (0000)
+
+	double usart_div = FOSC/(BAUD);
+	USART1->BRR=usart_div;
+	//Enable Transmission & Reception
+	USART1->CR1 = (1<<2) |(1<<3);
+	USART1->CR1 |=(1<<13);
+	while(1)
+	{
+		while(!(USART1->SR &(1<<5)));
+		unsigned char control =USART1->DR &0x00FF;// first 8 bits
+
+
+	}
+
+}

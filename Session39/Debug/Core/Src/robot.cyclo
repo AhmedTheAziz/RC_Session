@@ -1,0 +1,5 @@
+../Core/Src/robot.cpp:10:2:Robot::Robot(Motor*, Motor*)	1
+../Core/Src/robot.cpp:15:7:void Robot::Forward()	1
+../Core/Src/robot.cpp:21:7:void Robot::Backward()	1
+../Core/Src/robot.cpp:26:7:void Robot::Right()	1
+../Core/Src/robot.cpp:31:7:void Robot::Left()	1

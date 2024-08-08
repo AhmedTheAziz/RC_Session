@@ -1,0 +1,81 @@
+#include "OP.h"
+#include "main.h"
+#include "IP.h"
+/*
+ Session39 Implementations
+ name:
+ Robot_Controlled_via_Bluetooth
+ */
+
+void Motor1_CW(OP &M_in1, OP&M_in2, OP&M_en)
+{
+	M_in1.ON();
+	M_in2.OFF();
+	M_en.ON();
+}
+struct Motor_Config
+{
+	OP in1;
+	OP in2;
+	OP EN;
+};
+struct Motor
+{
+	Motor(Motor_Config * config) :config_{config}
+	{
+		config_->in1.OFF();
+		config_->in2.OFF();
+		config_->EN.OFF();
+	}
+
+	void CW()
+	{
+
+	}
+
+	void CCW()
+	{
+
+	}
+
+	void Stop()
+	{
+
+	}
+
+	otor_Config * config_;
+};
+
+Motor_Config *m1_config
+{
+	{GPIOA,5},
+	{GPIOA,1},
+	{GPIOA,6}
+};
+Motor_Config *m1_config
+{
+	{GPIOA,4},
+	{GPIOA,0},
+	{GPIOB,0}
+};
+
+int main()
+{
+	//MOtor1 to move CW
+
+	//Enable RCC
+	RCC->APB2ENR=(1<<2|(1<<3));
+
+	//CONFIG AND SET
+	OP M1_in1(GPIOA,5);
+	OP M1_in2(GPIOA,1);
+	OP M1_EN(GPIOA,6);
+
+
+	while (1)
+	{
+Motor_CW(M1_in1,M1_in2,M1_EN)
+	}
+
+return 0;
+}

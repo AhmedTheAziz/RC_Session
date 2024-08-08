@@ -1,0 +1,21 @@
+#include "uart.h"
+
+int main(void)
+{
+	UART* bl_spp =new(UART1INS) UART(UART1INS);
+	std::string L_ON ="LED is ON!!\r\n";
+	std::string L_OFF="LED is OFF!!\r\n";
+	while(1)
+	{
+
+		auto Control=bl_spp->Read();
+		if (Control == 'w')
+		{
+			bl_spp->Send(L_ON);
+		}
+		else
+		{
+			bl_spp->Send(L_OFF);
+		}
+	}
+}

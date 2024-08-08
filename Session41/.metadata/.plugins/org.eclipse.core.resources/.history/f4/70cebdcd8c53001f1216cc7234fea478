@@ -1,0 +1,91 @@
+/*
+ * uart.h
+ *
+ *  Created on: Aug 5, 2024
+ *      Author: AHMED ABDELAZIZ
+ */
+
+#include "main.h"
+
+#ifndef INC_UART_H_
+#define INC_UART_H_
+
+#define FOSC 8000000
+#define BAUD 9600
+enum UART_no : uint32_t
+{
+	UART1INS = 0x40013800,
+	UART2INS = 0x40004400,
+	UART3INS = 0x40004800,
+
+};
+const double USART_div = FOSC/(BAUD);
+class UART
+{
+public:
+	UART(int data) : data{UART_no}
+	{
+		if(this == UART1INS)
+		{}
+		else if ()
+		{}
+		else if()
+		{}
+		else
+		{
+			Send("NO UART with this address is Available!! \r\n");
+		}
+	}
+	void INIT()
+	{
+		//UART1 INITIATE
+		// Activating Clock enable
+		//              AFIO     GPIOA    USART1
+		RCC->APB2ENR = (1<<0) | (1<<2) | (1<<14);
+		//Activating TX(O/P PA9) and RX (I/P PA10) pins
+		GPIOA->CRH = (0x004B<<4); // (0100 1011)
+		// Setting BAUD Rate
+		BRR = USART_div;
+		//Enable Transmission and Receiving
+		CR1= (1<<2) |(1<<3);
+		CR1|=(1<<13);
+	}
+	char Read()
+	{
+		while(!(SR&(1<<5))); //Bit 5 RXNE: Read data register not empty
+		return DR &0x00FF;
+	}
+	void Send (char data)
+	{
+		while(!(SR&(1<<7)));
+		DR=data;
+	}
+	void Send(char* data)//(const std::string& data)
+	{
+		auto i{0};
+		while(data[i]!='\0')
+		{
+			Send(data[i]);
+			i++;
+		}
+	}
+	void* operator new(size_t, UART_no uart)
+	{
+		return reinterpret_cast<void*>(uart); // return uart-instance as a pointer not an Adress.
+	}
+
+
+private:
+	//REGISTERS..
+	uint32_t SR;
+	uint32_t DR;
+	uint32_t BRR;
+	uint32_t CR1;
+	uint32_t CR2;
+	uint32_t CR3;
+	uint32_t GTPR;
+};
+
+
+
+#endif /* INC_UART_H_ */

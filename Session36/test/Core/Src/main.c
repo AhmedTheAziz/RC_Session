@@ -1,0 +1,17 @@
+#include "main.h"
+
+int main()
+{
+	//enable RCC. APBENR
+	RCC->APB2ENR=(1<<2); // (Activation Action << Bit No.) bit wise
+	//CONf. port (I/P / O/P).
+	GPIOA->CRL=(3<<4); // (ACTION CONf.[CONf. 00, Mode 11] << BIT No.) bit wise
+
+	while(1)
+	{
+		//SET PINS
+		GPIOA->ODR=(1<<1); //pin is ON one to one
+	}
+
+return 0;
+}
